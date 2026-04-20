@@ -1,28 +1,8 @@
+import { colorsByType } from "@/lib/colors";
 import { Pokemon } from "@/types/pokemon";
 import { Link } from "expo-router";
 import { useEffect, useState } from "react";
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
-
-const colorsByType: Record<string, string> = {
-  normal: "#A8A77A",
-  fire: "#EE8130",
-  water: "#6390F0",
-  electric: "#F7D02C",
-  grass: "#7AC74C",
-  ice: "#96D9D6",
-  fighting: "#C22E28",
-  poison: "#A33EA1",
-  ground: "#E2BF65",
-  flying: "#A98FF3",
-  psychic: "#F95587",
-  bug: "#A6B91A",
-  rock: "#B6A136",
-  ghost: "#735797",
-  dragon: "#6F35FC",
-  dark: "#705746",
-  steel: "#B7B7CE",
-  fairy: "#D685AD",
-};
 
 export default function Index() {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
@@ -63,6 +43,9 @@ export default function Index() {
         padding: 16,
       }}
     >
+      <View style={styles.wrapper}>
+        <Text style={styles.heading}>Pokemon</Text>
+      </View>
       {pokemons.map((pokemon) => (
         <Link
           href={{ pathname: "/details", params: { name: pokemon.name } }}
@@ -101,6 +84,25 @@ export default function Index() {
 }
 
 const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#F5FCFF",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    margin: 5,
+    paddingTop: 20,
+    paddingBottom: 20,
+    paddingLeft: 32,
+    paddingRight: 32,
+    borderRadius: 20,
+  },
+  heading: {
+    fontSize: 32,
+    fontWeight: "bold",
+    textAlign: "center",
+    color: "#2C3E50",
+  },
   name: {
     fontSize: 25,
     fontWeight: "bold",
