@@ -46,44 +46,58 @@ export default function Index() {
       <View style={styles.wrapper}>
         <Text style={styles.heading}>Pokemon</Text>
       </View>
-      {pokemons.map((pokemon) => (
-        <Link
-          href={{ pathname: "/details", params: { name: pokemon.name } }}
-          key={pokemon.name}
-          // @ts-ignore
-          style={{
-            backgroundColor:
-              colorsByType[pokemon.type[0].type.name] || "#7F8C8D",
-            padding: 20,
-            borderRadius: 20,
-          }}
-        >
-          <View>
-            <Text style={styles.name}>{pokemon.name}</Text>
-            <Text style={styles.type}>{pokemon.type[0].type.name}</Text>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "center",
-              }}
-            >
-              <Image
-                source={{ uri: pokemon.image }}
-                style={{ width: 150, height: 150 }}
-              />
-              <Image
-                source={{ uri: pokemon.imageBack }}
-                style={{ width: 150, height: 150 }}
-              />
+
+      <View style={styles.container}>
+        {pokemons.map((pokemon) => (
+          <Link
+            href={{ pathname: "/details", params: { name: pokemon.name } }}
+            key={pokemon.name}
+            // @ts-ignore
+            style={{
+              backgroundColor:
+                colorsByType[pokemon.type[0].type.name] || "#7F8C8D",
+              padding: 20,
+              borderRadius: 20,
+              width: "45%",
+            }}
+          >
+            <View>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "center",
+                }}
+              >
+                <Image
+                  source={{ uri: pokemon.image }}
+                  style={{ width: 170, height: 170 }}
+                />
+                {/* <Image
+                  source={{ uri: pokemon.imageBack }}
+                  style={{ width: 150, height: 150 }}
+                /> */}
+              </View>
+              <Text style={styles.name}>{pokemon.name}</Text>
+              <Text style={styles.type}>{pokemon.type[0].type.name}</Text>
             </View>
-          </View>
-        </Link>
-      ))}
+          </Link>
+        ))}
+      </View>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    // flex: 1,
+    // flexDirection: "row",
+    flexWrap: "wrap",
+    width: "100%",
+    gap: 16,
+  },
+  link: {
+    width: "50%",
+  },
   wrapper: {
     flex: 1,
     justifyContent: "center",
@@ -97,6 +111,7 @@ const styles = StyleSheet.create({
     paddingRight: 32,
     borderRadius: 20,
   },
+
   heading: {
     fontSize: 32,
     fontWeight: "bold",
